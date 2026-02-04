@@ -111,7 +111,7 @@ if st.button("Analyze Sentiment"):
             
             st.markdown(f"""
                 <div class="result-card">
-                    <h2 class="{sentiment_color}">{emoji} {prediction}</h2>
+                    <h2 class="{sentiment_color}">{prediction}</h2>
                     <p>Confidence Score: <strong>{probability:.2f}%</strong></p>
                 </div>
             """, unsafe_allow_html=True)
