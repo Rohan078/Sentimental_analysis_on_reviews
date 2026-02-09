@@ -64,11 +64,11 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Application Header
+
 st.markdown("<h1 style='text-align: center; color: #182848;'> Product Sentiment Analysis</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; color: #666;'>Analyze customer reviews instantly using AI.</p>", unsafe_allow_html=True)
 
-# Load Model
+
 @st.cache_resource
 def load_model():
     try:

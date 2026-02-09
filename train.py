@@ -40,14 +40,14 @@ df['clean_text'] = df['Review text'].apply(clean)
 # Model Training
 print("Training model...")
 
-# Convert text to numbers (TF-IDF)
+
 tfidf = TfidfVectorizer(max_features=5000)
 X = tfidf.fit_transform(df['clean_text'])
 y = df['sentiment']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Train Logistic Regression (Simple & Effective)
+# Train Logistic Regression 
 model = LogisticRegression(max_iter=1000)
 model.fit(X_train, y_train)
 
@@ -119,7 +119,7 @@ with mlflow.start_run(run_name="tfidf_logistic"):
     )
     print("MLflow logging complete.")
 
-# -------- Additional MLflow runs for hyperparameter exploration --------
+
 
 # Hyperparameter configurations for extra runs
 hyperparams_list = [
@@ -141,7 +141,7 @@ for cfg in hyperparams_list:
             }
         )
 
-        # ----- LOG PARAMETERS -----
+        #  LOG PARAMETERS 
         mlflow.log_param("vectorizer", "TFIDF")
         mlflow.log_param("max_features", tfidf.max_features)
         mlflow.log_param("model", "LogisticRegression")
@@ -153,7 +153,7 @@ for cfg in hyperparams_list:
 
         preds = hp_model.predict(X_test)
 
-        # ----- LOG METRICS -----
+        #  LOG METRICS 
         mlflow.log_metric("accuracy", accuracy_score(y_test, preds))
         mlflow.log_metric(
             "f1_weighted", f1_score(y_test, preds, average="weighted")
@@ -169,7 +169,7 @@ for cfg in hyperparams_list:
             recall_score(y_test, preds, average="weighted", zero_division=0),
         )
 
-        # ----- LOG ARTIFACTS (Confusion Matrix & Classification Report) -----
+        #  LOG ARTIFACTS (Confusion Matrix & Classification Report)
         import matplotlib.pyplot as plt
         import seaborn as sns
         from sklearn.metrics import confusion_matrix
@@ -188,7 +188,7 @@ for cfg in hyperparams_list:
             f.write(classification_report(y_test, preds))
         mlflow.log_artifact(report_filename)
 
-        # ----- LOG MODEL & REGISTER -----
+        #  LOG MODEL & REGISTER 
         mlflow.sklearn.log_model(
             sk_model=hp_model,
             artifact_path="sentiment_model",
