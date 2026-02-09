@@ -5,3 +5,5 @@ streamlit
 matplotlib
 seaborn
 wordcloud
+mlflow
+prefect

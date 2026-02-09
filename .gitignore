@@ -75,3 +75,8 @@ dmypy.json
 .vscode/
 .idea/
 *.pkl
+
+# MLflow
+mlruns/
+mlflow.db
+.prefect/
