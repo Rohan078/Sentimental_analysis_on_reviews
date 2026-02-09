@@ -19,10 +19,7 @@ def training_flow():
     print(f"Flow completed with status: {status}")
 
 if __name__ == "__main__":
-    # To run locally:
-    # training_flow()
     
-    # To demonstrate scheduling (requires prefect server/cloud):
     from prefect.client.schemas.schedules import IntervalSchedule
     from datetime import timedelta
     
